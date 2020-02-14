@@ -33,6 +33,8 @@ gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 # gem 'popper_js', '~> 1.14.5'
 gem 'kaminari'
 gem 'pry'
+gem 'stripe'
+gem 'paypal-sdk-rest'
 
 
 # Use Active Storage variant
