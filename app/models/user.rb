@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 	devise :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :validatable
+     
 	has_one :cart, ->{ paid }, class_name: Cart.name
 
 	has_many :unpaid_items, through: :cart, dependent: :destroy
