@@ -89,13 +89,9 @@
                 <h4 class="card-title">
                   <a href="#"><%= product.name %></a>
                 </h4>
-                <%= form_for @cart_item, url: cart_item_index_path do |f| %>
-          				<%= f.number_field :quantity, :value => 1, :min => 1 %>
-                  <%= f.number_field :price, :value => product.price %>
-                  <%= link_to 'Detail', shop_path(product.id), :class => 'btn btn-success' %>
-          				<%= f.submit "Add to cart", :class => 'btn btn-success' %>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                <% end %>
+                <h5><%= product.price %></h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                <%= link_to 'Add to cart',  order_items_path, :class => 'btn btn-success' %>
               </div>
               <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -104,7 +100,6 @@
           </div>
         <% end %>
         </div>
-        <%= link_to "#{current_cart.cart_items.size} items with a value", cart_path%>
         <!-- /.row -->
 
       </div>
