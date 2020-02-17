@@ -56,6 +56,7 @@
                 </h4>
                 <h5><%= product.price %></h5>
                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                <%= link_to 'Details',  shop_path(product.id), :class => 'btn btn-primary' %>
                 <%= link_to 'Add to cart',  order_items_path, :class => 'btn btn-success' %>
               </div>
               <div class="card-footer">
