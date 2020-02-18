@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-	before_action :current_order
 
 	def not_found
 	    raise ActionController::RoutingError.new('Not Found')
