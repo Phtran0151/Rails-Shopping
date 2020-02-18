@@ -30,8 +30,9 @@ gem 'font_awesome5_rails'
 gem 'seed-fu', '~> 2.3'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
-# gem 'popper_js', '~> 1.14.5'
+gem 'popper_js', '~> 1.16.0'
 gem 'kaminari'
+gem 'stripe'
 gem 'pry'
 
 
