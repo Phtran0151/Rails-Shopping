@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   post 'order_items/:id/add' => "order_items#add_quantity", as: "order_item_add"
   post 'order_items/:id/reduce' => "order_items#reduce_quantity", as: "order_item_reduce"
 
-  resources :products
   resources :payment
   resources :shops, only:[:index, :show, :create]
   devise_for :users
+  resources :products, only: [:index]
 
   root "shops#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
