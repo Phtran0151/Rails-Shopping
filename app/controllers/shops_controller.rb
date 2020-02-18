@@ -4,6 +4,6 @@ class ShopsController < ApplicationController
   end
 
   def show
-  	@product = Product.find(params[:id])
+  	@product = Product.find(params[:id]) rescue not_found
   end
 end
