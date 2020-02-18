@@ -1,85 +1,34 @@
 class OrderItemsController < ApplicationController
-  before_action :set_order_item, only: [:show, :edit, :update, :destroy]
-  before_action :load_order, only: [:create]
 
-  # GET /order_items
-  # GET /order_items.json
-  # def index
-  #   @order_items = OrderItem.all
-  # end
-
-  # GET /order_items/1
-  # GET /order_items/1.json
-  # def show
-  # end
-
-  # GET /order_items/new
-  def new
-    @order_item = OrderItem.new
-  end
-
-  # GET /order_items/1/edit
-  def edit
-  end
-
-  # POST /order_items
-  # POST /order_items.json
   def create
+    chosen_product = Product.find(params[:product_id])
+    current_order = @current_order
+
+    # If cart already has this product then find the relevant
     binding.pry
-    @order_item = @order.order_items.new(quantity: 1, product_id: params[:product_id])
-
-    respond_to do |format|
-      if @order_item.save
-        format.html { redirect_to @order, notice: 'Successfully added product to cart.' }
-        format.json { render :show, status: :created, location: @order_item }
-      else
-        format.html { render :new }
-        format.json { render json: @order_item.errors, status: :unprocessable_entity }
-      end
+    if current_order.user.include?(chosen_product)
+      @order_item = current_order.order_items.find_by(:product_id => chosen_product)
+      @order_item.quantity += 1
+    else
+      @order_item = OrderItem.new
+      @order_item.order = current_order
+      @order_item.product = chosen_product
     end
-  end
 
-  # PATCH/PUT /order_items/1
-  # PATCH/PUT /order_items/1.json
-  def update
-    respond_to do |format|
-      if @order_item.update(order_item_params)
-        format.html { redirect_to @order_item, notice: 'Order item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order_item }
-      else
-        format.html { render :edit }
-        format.json { render json: @order_item.errors, status: :unprocessable_entity }
-      end
-    end
+    @order_item.save
+    redirect_to orders_path(current_order)
   end
 
   # DELETE /order_items/1
   # DELETE /order_items/1.json
   def destroy
+    @order_item = OrderItem.find(params[:id])
     @order_item.destroy
-    respond_to do |format|
-      format.html { redirect_to order_items_url, notice: 'Order item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to orders_path(@current_order)
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order_item
-      @order_item = OrderItem.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
     def order_item_params
-      params.require(:order_item).permit(:product_id, :order_id, :completed_at)
+      params.require(:order_item).permit(:quantity, :product_id, :cart_id)
     end
-
-    def load_order
-      @order = Order.find_or_initialize_by_id(session[:order_id], completed_at: true)
-      if @order.new_record?
-        @order.save!
-        session[:order_id] = @order.id
-      end
-    end
-
 end

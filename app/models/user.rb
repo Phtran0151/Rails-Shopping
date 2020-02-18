@@ -3,15 +3,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 	devise :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :validatable
-	has_one :order, ->{ paid }, class_name: Order.name
+	has_one :order, ->{unpaid}, class_name: Order.name
 
-	has_many :unpaid_items, through: :order, dependent: :destroy
-	has_many :unpaid_products, through: :unpaid_item , source: :product
+	has_many :unpaid_items, through: :order, source: :order_items
+	has_many :unpaid_products, through: :unpaid_items, source: :product
 
 	has_many :orders
-	has_many :order_items, through: :order
-	has_many :products, through: :order_item, source: :product
-	has_many :paid_products, through: :order_item, source: :product
+	has_many :order_items, through: :orders
+	has_many :products, through: :order_items, source: :product
+	has_many :paid_products, through: :order_items, source: :product
 	PASSWORD_FORMAT = /\A
 		(?=.{8,})          # Must contain 8 or more characters
 		(?=.*\d)           # Must contain a digit

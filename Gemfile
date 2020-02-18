@@ -32,6 +32,7 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'popper_js', '~> 1.16.0'
 gem 'kaminari'
+gem 'stripe'
 gem 'pry'
 
 
