@@ -9,7 +9,6 @@ class ShopsController < ApplicationController
 	end
 
 	private
-
 	def add_quantity
 		@order_item = OrderItem.find(params[:id])
 		@order_item.quantity += 1
