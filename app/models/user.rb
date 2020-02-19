@@ -4,7 +4,6 @@ class User < ApplicationRecord
 	devise :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :validatable
 	has_one :order, ->{unpaid}, class_name: Order.name
-
 	has_many :unpaid_items, through: :orders, source: :order_item
 	has_many :unpaid_products, through: :unpaid_items, source: :product
 
