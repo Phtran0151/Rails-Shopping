@@ -3,9 +3,12 @@
     <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
     <div class="card-body">
       <h4 class="card-title">
-        <a href="#"><%= @product.name %></a>
+        <a href="#"><%= product.name %></a>
       </h4>
-      <h5><%= number_to_currency(@product.price) %></h5>
+      <% binding.pry %>
+      <% item_del = current_order.order_items.find_by(order_id: current_user.order.id, product_id: product.id) %>
+      <h5><%= number_to_currency(product.price) %></h5>
+      <%= number_field_tag 'quantity', item_del.quantity %>
       <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
       <%= link_to 'Details',  shop_path(product.id), :class => 'btn btn-primary' %>
       <%= link_to 'Add to cart', order_items_path(product_id: product.id), :class => 'btn btn-success', method: :post %>

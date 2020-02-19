@@ -5,7 +5,13 @@ class OrderItemsController < ApplicationController
     if product.blank?
       redirect_to cart_items_path, alert: "Product not found"
     end
+    # binding.pry
+
     @order_item = OrderItem.create(product_id: product.id, order_id: current_order.id)
+    # @add_item = OrderItem.find(params[:id])
+    # quantity = params[:add_item][:quantity]
+    # @add_item.update_attribute(:quantity, quantity)
+
     if @order_item.save
       redirect_to orders_path(product.id), notice: "Successly add product to cart"
     else
@@ -22,7 +28,8 @@ class OrderItemsController < ApplicationController
   end
 
   private
-    def order_item_params
-      params.require(:order_items).permit(:product_id, :cart_id, :quantity)
+
+    def set_quantity
+      params.permit(:quantity)
     end
 end

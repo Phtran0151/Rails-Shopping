@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_filter :current_order, only: [:index, :show]
 
   def show
-    @order = Order.find(params[:id])
+    @order_item = OrderItem.find(params[:id])
   end
 
   # DELETE /orders/1
