@@ -17,8 +17,7 @@ class ApplicationController < ActionController::Base
 	  		end
 		end
 		if session[:order_id] == nil
-			@current_order = Order.create(id: params[:id], user_id: current_user.id, completed_at: false)
-	        # @current_order.id = session[:order_id]
+			@current_order = Order.create(user_id: current_user.id, completed_at: false)
 		end
 	end
 end

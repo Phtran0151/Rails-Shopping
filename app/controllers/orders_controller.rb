@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_filter :current_order, only: [:index, :show]
+  before_filter :current_order, only: [:show]
 
   def show
-    @order_item = OrderItem.find(params[:id])
+    @orders = Order.all
   end
 
   # DELETE /orders/1

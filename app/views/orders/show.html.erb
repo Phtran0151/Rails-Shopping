@@ -8,9 +8,9 @@
     </div>
     <div class="card-body">
       <!-- PRODUCT -->
-      <%= render partial: 'order', collection: @order %>
+      <% @orders = current_user.unpaid_products%>
+      <%= render partial: 'order', collection: @orders %>
       <!-- END PRODUCT -->
-      <hr>
     </div>
     <div class="card-footer">
         <div class="pull-right" style="margin: 10px">

@@ -1,13 +1,17 @@
 class Order < ApplicationRecord
 	belongs_to :user
-	has_many :unpaid_items, :through => :orders, :source => :order_item
+	has_many :order_items
+	scope :unpaid, ->{where completed_at: false }
+	scope :paid,   ->{where completed_at: true }
 
-	# LOGIC
-	def sub_total
-		sum = 0
-		self.order_items.each do |item|
-			sum += item.total_price
+	private
+
+	def add_product(product_id)
+		current_item = order_items.find_by_product_id(product_id)
+		if current_item
+			current_item.quantity += 1
+		else
+			current_item = order_items.build(:product_id => product_id)
 		end
-		return sum
 	end
 end

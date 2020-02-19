@@ -4,10 +4,10 @@ class User < ApplicationRecord
 	devise :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :validatable
 	has_one :order, ->{unpaid}, class_name: Order.name
-	has_many :unpaid_items, through: :orders, source: :order_item
+	has_many :unpaid_items, through: :order, source: :order_items
 	has_many :unpaid_products, through: :unpaid_items, source: :product
 
-	has_many :orders
+	has_many :orders, -> { paid }, class_name: Order.name
 	has_many :order_items, through: :orders
 	has_many :products, through: :order_items, source: :product
 	has_many :paid_products, through: :order_items, source: :product

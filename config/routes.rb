@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # Method of Order_Item or Cart_items
+  # Method of Order_Item and Cart_items
   post 'order_items' => "order_items#create"
   delete 'order_items/:id' => "order_items#destroy"
   get 'orders/:id' => "orders#show", as: "orders"

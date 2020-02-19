@@ -25,6 +25,6 @@ class PaymentController < ApplicationController
 
 	private
 		def payment_params
-	    	params.require(:order).permit(:name, :email, :address, :pay_method)
+	    	params.require(:payment).permit(:name, :email, :address, :pay_method)
 		end
 end

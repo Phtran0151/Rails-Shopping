@@ -304,11 +304,8 @@ DEPENDENCIES
   jquery-rails
   kaminari
   listen (>= 3.0.5, < 3.2)
-<<<<<<< HEAD
   paypal-sdk-rest
-=======
   popper_js (~> 1.16.0)
->>>>>>> feature
   pry
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.1)
