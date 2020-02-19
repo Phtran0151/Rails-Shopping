@@ -1,14 +1,24 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User:</strong>
-  <%= @order.user_id %>
-</p>
-
-<p>
-  <strong>Completed at:</strong>
-  <%= @order.completed_at %>
-</p>
-
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<div class="container">
+  <div class="card shopping-cart">
+    <div class="card-header bg-dark text-light">
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+      Shopping Cart
+      <%= link_to "Continue Shopping", root_path, :class => 'btn btn-outline-info btn-sm pull-right' %>
+      <div class="clearfix"></div>
+    </div>
+    <div class="card-body">
+      <!-- PRODUCT -->
+      <% @orders = current_user.unpaid_products%>
+      <%= render partial: 'order', collection: @orders %>
+      <!-- END PRODUCT -->
+    </div>
+    <div class="card-footer">
+        <div class="pull-right" style="margin: 10px">
+            <a href="" class="btn btn-success pull-right" style="float: right;">Checkout</a>
+            <div class="pull-right" style="margin: 5px">
+              Total price: <b>50.00€</b>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
-  resources :orders
-  devise_for :users
+  # Method of Order_Item and Cart_items
+  post 'order_items' => "order_items#create"
+  delete 'order_items/:id' => "order_items#destroy"
+  get 'orders/:id' => "orders#show", as: "orders"
+
+  # post 'order_items/:id/add' => "order_items#add_quantity", as: "order_item_add"
+  # post 'order_items/:id/reduce' => "order_items#reduce_quantity", as: "order_item_reduce"
+  resources :payment
   resources :shops, only:[:index, :show, :create]
+  devise_for :users
   resources :products, only: [:index]
 
   root "shops#index"
