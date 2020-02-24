@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <%= yield %>
+    <h3>Welcome to example.com, <%= @checkout.name %></h3>
+    <p>
+      You have successfully checkout to example.com,
+      your username is: <%= @checkout.email %>.<br>
+    </p>
+    <p>
+      To checkout of the site, just follow this link: <%= @url %>.
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

@@ -1,12 +1,11 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_filter :current_order, only: [:show]
+  before_filter :current_order, only: [:show, :create]
 
   def show
     @orders = Order.all
   end
 
-  # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
     @order = @current_order

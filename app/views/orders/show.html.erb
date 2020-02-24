@@ -14,7 +14,8 @@
     </div>
     <div class="card-footer">
         <div class="pull-right" style="margin: 10px">
-            <a href="" class="btn btn-success pull-right" style="float: right;">Checkout</a>
+            <% user = current_user.id %>
+            <%= link_to 'Checkout', checkout_index_path, :class => 'btn btn-success pull-right', method: :get %>
             <div class="pull-right" style="margin: 5px">
               Total price: <b>50.00€</b>
             </div>
