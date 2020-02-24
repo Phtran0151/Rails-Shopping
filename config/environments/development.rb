@@ -35,7 +35,6 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   # SMTP settings for gmail
-  config.action_mailer.default_charset = "utf-8"
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
@@ -46,7 +45,7 @@ Rails.application.configure do
     :authentication       => "plain",
     :user_name            => ENV['gmail_username'],
     :password             => ENV['gmail_password'],
-    :domain               => 'gmail.com'
+    :domain               => 'gmail.com',
     :enable_starttls_auto => true
   }
 
